@@ -140,4 +140,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
     }
 
 
+    /**
+     * 退出登录
+     * @param username 用户名
+     * @param token 用户Token
+     */
+    @Override
+    public void logout(String username, String token) {
+        if(checkLogin(username,token)){
+            stringRedisTemplate.delete("login_" + username);
+            return;
+        }
+        throw new ClientException("用户Token不存在 或 用户未登录");
+    }
+
+
 }

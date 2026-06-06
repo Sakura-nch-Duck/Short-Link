@@ -4,8 +4,11 @@ package com.nch.shortlink.admin.controller;
 import cn.hutool.core.bean.BeanUtil;
 import com.nch.shortlink.admin.common.convention.result.Result;
 import com.nch.shortlink.admin.common.convention.result.Results;
+import com.nch.shortlink.admin.dto.req.UserLoginReqDTO;
 import com.nch.shortlink.admin.dto.req.UserRegisteReqDTO;
+import com.nch.shortlink.admin.dto.req.UserUpdateReqDTO;
 import com.nch.shortlink.admin.dto.resq.UserActualRespDTO;
+import com.nch.shortlink.admin.dto.resq.UserLoginRespDTO;
 import com.nch.shortlink.admin.dto.resq.UserRespDTO;
 import com.nch.shortlink.admin.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -55,5 +58,34 @@ public class UserController {
     public Result<Void> register(@RequestBody UserRegisteReqDTO requestParam){
         userService.register(requestParam);
         return Results.success();
+    }
+
+
+    /**
+     * 修改用户
+     */
+    @PutMapping("/api/shortlink/v1/user")
+    public Result<Void> update(@RequestBody UserUpdateReqDTO requestParam){
+        userService.update(requestParam);
+        return Results.success();
+    }
+
+    /**
+     * 用户登录
+     */
+    @PostMapping("/api/shortlink/v1/user/login")
+    public Result<UserLoginRespDTO> login(@RequestBody UserLoginReqDTO requestParam){
+        UserLoginRespDTO result = userService.login(requestParam);
+        return Results.success(result);
+    }
+
+    /**
+     * 检查用户是否登录
+     * @param token
+     * @return
+     */
+    @GetMapping("/api/shortlink/v1/user/check-login")
+    public Result<Boolean> checkLogin(@RequestParam("username") String username , @RequestParam("token") String token){
+        return Results.success(userService.checkLogin(username,token));
     }
 }

@@ -1,6 +1,9 @@
 package com.nch.shortlink.admin.dao.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.nch.shortlink.admin.common.database.BaseDO;
 import lombok.Data;
 
 import java.util.Date;
@@ -10,7 +13,7 @@ import java.util.Date;
  */
 @Data
 @TableName("t_user")
-public class UserDO {
+public class UserDO extends BaseDO {
         /**
          * ID
          */
@@ -45,19 +48,4 @@ public class UserDO {
          * 注销时间戳
          */
         private Long deletionTime;
-
-        /**
-         * 创建时间
-         */
-        private Date createTime;
-
-        /**
-         * 修改时间
-         */
-        private Date updateTime;
-
-        /**
-         * 删除标识 0：未删除 1：已删除
-         */
-        private Integer delFlag = 0;
     }

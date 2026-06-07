@@ -1,4 +1,4 @@
-package com.nch.shortlink.admin.dto.resq;
+package com.nch.shortlink.admin.dto.resp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

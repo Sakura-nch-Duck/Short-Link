@@ -13,8 +13,8 @@ import com.nch.shortlink.admin.dao.mapper.UserMapper;
 import com.nch.shortlink.admin.dto.req.UserLoginReqDTO;
 import com.nch.shortlink.admin.dto.req.UserRegisteReqDTO;
 import com.nch.shortlink.admin.dto.req.UserUpdateReqDTO;
-import com.nch.shortlink.admin.dto.resq.UserLoginRespDTO;
-import com.nch.shortlink.admin.dto.resq.UserRespDTO;
+import com.nch.shortlink.admin.dto.resp.UserLoginRespDTO;
+import com.nch.shortlink.admin.dto.resp.UserRespDTO;
 import com.nch.shortlink.admin.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.redisson.api.RBloomFilter;
@@ -130,7 +130,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
          */
         String uuid = UUID.randomUUID().toString();
         stringRedisTemplate.opsForHash().put("login_" + requestParam.getUsername(),uuid,JSON.toJSONString(userDO));
-        stringRedisTemplate.expire("login_" + requestParam.getUsername(),30L, TimeUnit.MINUTES);
+        stringRedisTemplate.expire("login_" + requestParam.getUsername(),30L, TimeUnit.DAYS);
         return new UserLoginRespDTO(uuid);
     }
 

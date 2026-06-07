@@ -4,14 +4,15 @@ package com.nch.shortlink.admin.dto.req;
 import lombok.Data;
 
 /**
- * 短链接分组创建参数
+ * 短链接分组排序参数
  */
 @Data
-public class ShortLinkGroupSaveReqDTO {
+public class ShortLinkGroupSortReqDTO {
+
     /**
-     * 分组名
+     * 分组id
      */
-    private String name;
+    private String gid;
 
     /**
      * 排序

@@ -5,8 +5,8 @@ import com.nch.shortlink.admin.dao.entity.UserDO;
 import com.nch.shortlink.admin.dto.req.UserLoginReqDTO;
 import com.nch.shortlink.admin.dto.req.UserRegisteReqDTO;
 import com.nch.shortlink.admin.dto.req.UserUpdateReqDTO;
-import com.nch.shortlink.admin.dto.resq.UserLoginRespDTO;
-import com.nch.shortlink.admin.dto.resq.UserRespDTO;
+import com.nch.shortlink.admin.dto.resp.UserLoginRespDTO;
+import com.nch.shortlink.admin.dto.resp.UserRespDTO;
 
 /**
  * 用户接口层

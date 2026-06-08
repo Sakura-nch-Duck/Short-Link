@@ -1,15 +1,21 @@
 package com.nch.shortlink.project.dao.entity;
 
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.nch.shortlink.project.common.database.BaseDO;
 import lombok.Data;
 
 
 import java.util.Date;
 
+
+/**
+ * 短链接实体
+ */
 @Data
 @TableName("t_link")
-public class LinkDO {
+public class ShortLinkDO extends BaseDO {
     /**
      * ID
      */
@@ -68,20 +74,7 @@ public class LinkDO {
     /**
      * 描述
      */
+    @TableField("`describe`")
     private String describe;
 
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 修改时间
-     */
-    private Date updateTime;
-
-    /**
-     * 删除标识 0：未删除 1：已删除
-     */
-    private Integer delFlag;
 }

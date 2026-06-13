@@ -1,11 +1,12 @@
-package com.nch.shortlink.admin.controller;
 
+
+package com.nch.shortlink.admin.controller;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.nch.shortlink.admin.common.convention.result.Result;
 import com.nch.shortlink.admin.common.convention.result.Results;
 import com.nch.shortlink.admin.dto.req.UserLoginReqDTO;
-import com.nch.shortlink.admin.dto.req.UserRegisteReqDTO;
+import com.nch.shortlink.admin.dto.req.UserRegisterReqDTO;
 import com.nch.shortlink.admin.dto.req.UserUpdateReqDTO;
 import com.nch.shortlink.admin.dto.resp.UserActualRespDTO;
 import com.nch.shortlink.admin.dto.resp.UserLoginRespDTO;
@@ -26,46 +27,41 @@ public class UserController {
     /**
      * 根据用户名查询用户信息
      */
-    @GetMapping("/api/shortlink/admin/v1/user/{username}")
+    @GetMapping("/api/short-link/admin/v1/user/{username}")
     public Result<UserRespDTO> getUserByUsername(@PathVariable("username") String username) {
-            return Results.success(userService.getUserByUsername(username));
-        }
-
-
-    /**
-     * 根据用户名查询用户真实信息
-     */
-    @GetMapping("/api/shortlink/admin/v1/actual/user/{username}")
-    public Result<UserActualRespDTO> getActualUserByUsername(@PathVariable("username") String username) {
-            return Results.success(BeanUtil.toBean(userService.getUserByUsername(username),UserActualRespDTO.class));
+        return Results.success(userService.getUserByUsername(username));
     }
 
     /**
-     *查询用户名是否存在
+     * 根据用户名查询无脱敏用户信息
      */
-    @GetMapping("/api/shortlink/admin/v1/user/has-username")
-    public Result<Boolean> hasUsername(@RequestParam("username") String username){
+    @GetMapping("/api/short-link/admin/v1/actual/user/{username}")
+    public Result<UserActualRespDTO> getActualUserByUsername(@PathVariable("username") String username) {
+        return Results.success(BeanUtil.toBean(userService.getUserByUsername(username), UserActualRespDTO.class));
+    }
+
+    /**
+     * 查询用户名是否存在
+     */
+    @GetMapping("/api/short-link/admin/v1/user/has-username")
+    public Result<Boolean> hasUsername(@RequestParam("username") String username) {
         return Results.success(userService.hasUsername(username));
     }
+
     /**
      * 注册用户
-     * Result<Void>：注册成功后不需要返回额外的业务数据
-     * @RequestBody：告诉 Spring 从 HTTP 请求的 body 中读取 JSON 数据，并自动转换成 UserRegisteReqDTO 对象。
-     *
-     * UserRegisteReqDTO：数据传输对象，包含注册所需的字段
      */
-    @PostMapping("/api/shortlink/admin/v1/user")
-    public Result<Void> register(@RequestBody UserRegisteReqDTO requestParam){
+    @PostMapping("/api/short-link/admin/v1/user")
+    public Result<Void> register(@RequestBody UserRegisterReqDTO requestParam) {
         userService.register(requestParam);
         return Results.success();
     }
 
-
     /**
      * 修改用户
      */
-    @PutMapping("/api/shortlink/admin/v1/user")
-    public Result<Void> update(@RequestBody UserUpdateReqDTO requestParam){
+    @PutMapping("/api/short-link/admin/v1/user")
+    public Result<Void> update(@RequestBody UserUpdateReqDTO requestParam) {
         userService.update(requestParam);
         return Results.success();
     }
@@ -73,29 +69,25 @@ public class UserController {
     /**
      * 用户登录
      */
-    @PostMapping("/api/shortlink/admin/v1/user/login")
-    public Result<UserLoginRespDTO> login(@RequestBody UserLoginReqDTO requestParam){
-        UserLoginRespDTO result = userService.login(requestParam);
-        return Results.success(result);
+    @PostMapping("/api/short-link/admin/v1/user/login")
+    public Result<UserLoginRespDTO> login(@RequestBody UserLoginReqDTO requestParam) {
+        return Results.success(userService.login(requestParam));
     }
 
     /**
      * 检查用户是否登录
-     * @param token
-     * @return
      */
-    @GetMapping("/api/shortlink/admin/v1/user/check-login")
-    public Result<Boolean> checkLogin(@RequestParam("username") String username , @RequestParam("token") String token){
-        return Results.success(userService.checkLogin(username,token));
+    @GetMapping("/api/short-link/admin/v1/user/check-login")
+    public Result<Boolean> checkLogin(@RequestParam("username") String username, @RequestParam("token") String token) {
+        return Results.success(userService.checkLogin(username, token));
     }
 
     /**
-     *用户退出登录
+     * 用户退出登录
      */
-    @DeleteMapping("/api/shortlink/admin/v1/user/logout")
-    public Result<Void> logout(@RequestParam("username") String username , @RequestParam("token") String token){
-        userService.logout(username,token);
+    @DeleteMapping("/api/short-link/admin/v1/user/logout")
+    public Result<Void> logout(@RequestParam("username") String username, @RequestParam("token") String token) {
+        userService.logout(username, token);
         return Results.success();
     }
-
 }

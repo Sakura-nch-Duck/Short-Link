@@ -8,10 +8,8 @@ import java.util.Optional;
  */
 public final class UserContext {
 
-
     /**
-     * 阿里巴巴线程安全ttl
-     * <a href="http://github.com/alibaba/transmittable-thread-local"/>
+     * <a href="https://github.com/alibaba/transmittable-thread-local" />
      */
     private static final ThreadLocal<UserInfoDTO> USER_THREAD_LOCAL = new TransmittableThreadLocal<>();
 

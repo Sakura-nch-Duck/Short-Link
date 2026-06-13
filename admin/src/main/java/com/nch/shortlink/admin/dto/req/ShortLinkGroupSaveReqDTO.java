@@ -1,5 +1,6 @@
-package com.nch.shortlink.admin.dto.req;
 
+
+package com.nch.shortlink.admin.dto.req;
 
 import lombok.Data;
 
@@ -8,13 +9,9 @@ import lombok.Data;
  */
 @Data
 public class ShortLinkGroupSaveReqDTO {
+
     /**
      * 分组名
      */
     private String name;
-
-    /**
-     * 排序
-     */
-    private Integer sortOrder;
 }

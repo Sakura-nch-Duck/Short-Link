@@ -1,6 +1,5 @@
 package com.nch.shortlink.project.common.convention.exception;
 
-
 import com.nch.shortlink.project.common.convention.errorcode.BaseErrorCode;
 import com.nch.shortlink.project.common.convention.errorcode.IErrorCode;
 
@@ -35,3 +34,4 @@ public class ServiceException extends AbstractException {
                 '}';
     }
 }
+

@@ -1,5 +1,6 @@
-package com.nch.shortlink.admin.dto.req;
 
+
+package com.nch.shortlink.admin.dto.req;
 
 import lombok.Data;
 
@@ -10,7 +11,7 @@ import lombok.Data;
 public class ShortLinkGroupSortReqDTO {
 
     /**
-     * 分组id
+     * 分组ID
      */
     private String gid;
 
